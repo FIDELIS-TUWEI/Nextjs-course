@@ -1,3 +1,4 @@
+import Link from "next/link";
 
 interface MemberItemProps {
     member: {
@@ -11,9 +12,9 @@ interface MemberItemProps {
 export default function MemberItem(props: MemberItemProps) {
     const { member } = props;
     return (
-        <div>
-            <img src={member.avatar} alt="member photo" />
+        <Link href={`/members/${member.id}`}>
+            <img src={member.avatar} alt={member.name} />
             <div>{member.name}</div>
-        </div>
+        </Link>
     )
 };
