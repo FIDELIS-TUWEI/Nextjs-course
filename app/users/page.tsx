@@ -1,8 +1,25 @@
+interface User {
+  id: number;
+  name: string;
+  username: string;
+  email: string;
+}
 
-const UsersPage = () => {
+const UsersPage = async () => {
+  const res = await fetch("https://jsonplaceholder.typicode.com/users");
+  const users: User[] = await res.json();
   return (
-    <div>UsersPage</div>
+    <>
+      <h1>Users</h1>
+      <ul>
+        {users.map((user) => (
+          <div key={user.id}>
+            <li>{user.name} <span>{user.username}</span> <small>{user.email}</small></li>
+          </div>
+        ))}
+      </ul>
+    </>
   )
 }
 
-export default UsersPage
+export default UsersPage;
